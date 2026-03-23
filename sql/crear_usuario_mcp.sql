@@ -5,8 +5,12 @@
 -- Oracle Cloud Infrastructure — Colombia & LATAM
 -- ============================================================
 
--- PASO 1: Crear el usuario (ajustar contraseña)
-CREATE USER mcp_user IDENTIFIED BY "MCP_Passw0rd#2025"
+-- ⚠️  IMPORTANTE: Reemplaza <TU_CONTRASEÑA_SEGURA> por una
+--     contraseña real antes de ejecutar en cualquier ambiente.
+--     Nunca usar contraseñas de ejemplo en producción.
+
+-- PASO 1: Crear el usuario (reemplazar contraseña)
+CREATE USER mcp_user IDENTIFIED BY "<TU_CONTRASEÑA_SEGURA>"
   DEFAULT TABLESPACE users
   TEMPORARY TABLESPACE temp
   QUOTA 0 ON users;
@@ -15,10 +19,11 @@ CREATE USER mcp_user IDENTIFIED BY "MCP_Passw0rd#2025"
 GRANT CREATE SESSION TO mcp_user;
 
 -- PASO 3: Acceso de solo lectura a los schemas necesarios
--- Reemplaza SCHEMA_NOMBRE por los schemas reales del cliente
+-- Reemplaza SCHEMA_NOMBRE y TABLA_NOMBRE por los valores reales
 -- Ejemplos:
 --   GRANT SELECT ON ventas.facturas TO mcp_user;
 --   GRANT SELECT ON hr.empleados TO mcp_user;
+-- GRANT SELECT ON <SCHEMA_NOMBRE>.<TABLA_NOMBRE> TO mcp_user;
 
 -- PASO 4: Acceso a la tabla de auditoría MCP
 GRANT SELECT, INSERT ON DBTOOLS.DBTOOLS$MCP_LOG TO mcp_user;
@@ -33,8 +38,9 @@ WHERE username = 'MCP_USER';
 
 -- ============================================================
 -- NOTAS DE SEGURIDAD:
+-- - Reemplazar <TU_CONTRASEÑA_SEGURA> antes de ejecutar
 -- - NO otorgar DBA, SYSDBA ni roles con privilegios altos
 -- - NO dar GRANT ANY TABLE ni CREATE TABLE
 -- - Revisar y ajustar los schemas según necesidad real
--- - Cambiar la contraseña antes de usar en producción
+-- - Rotar la contraseña cada 90 días en producción
 -- ============================================================
