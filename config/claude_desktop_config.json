@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "C:\\PROGRA~1\\nodejs\\npx.cmd",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\"
+      ]
+    },
+    "oracle-autonomous": {
+      "command": "C:\\tools\\sqlcl\\bin\\sql.exe",
+      "args": ["-mcp"],
+      "env": {
+        "TNS_ADMIN": "C:\\oracle\\wallets\\TU_WALLET_ADB"
+      }
+    },
+    "oracle-dbcs": {
+      "command": "C:\\tools\\sqlcl\\bin\\sql.exe",
+      "args": ["-mcp"],
+      "env": {
+        "TNS_ADMIN": "C:\\oracle\\network\\admin"
+      }
+    },
+    "github": {
+      "command": "C:\\PROGRA~1\\nodejs\\npx.cmd",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "TU_GITHUB_PAT_AQUI"
+      }
+    }
+  }
+}
