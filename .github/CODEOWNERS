@@ -1,0 +1,7 @@
+# CODEOWNERS — oracle-ai-mcp-server
+* @jesmonsa
+
+config/             @jesmonsa
+scripts/            @jesmonsa
+*.json              @jesmonsa
+.github/            @jesmonsa
